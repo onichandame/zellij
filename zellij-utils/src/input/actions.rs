@@ -184,7 +184,8 @@ pub enum Action {
         Option<Vec<SwapTiledLayout>>,
         Option<Vec<SwapFloatingLayout>>,
         Option<String>,
-    ), // the String is the tab name
+        Option<PathBuf>,
+    ), // the String is the tab name, the PathBuf is the cwd
     /// Do nothing.
     NoOp,
     /// Go to the next tab.
@@ -406,7 +407,7 @@ impl Action {
                     let (path_to_raw_layout, raw_layout, swap_layouts) =
                         Layout::stringified_from_path_or_default(Some(&layout_path), layout_dir)
                             .map_err(|e| format!("Failed to load layout: {}", e))?;
-                    let layout = Layout::from_str(&raw_layout, path_to_raw_layout, swap_layouts.as_ref().map(|(f, p)| (f.as_str(), p.as_str())), cwd).map_err(|e| {
+                    let layout = Layout::from_str(&raw_layout, path_to_raw_layout, swap_layouts.as_ref().map(|(f, p)| (f.as_str(), p.as_str())), cwd.clone()).map_err(|e| {
                         let stringified_error = match e {
                             ConfigError::KdlError(kdl_error) => {
                                 let error = kdl_error.add_src(layout_path.as_path().as_os_str().to_string_lossy().to_string(), String::from(raw_layout));
@@ -453,6 +454,7 @@ impl Action {
                             swap_tiled_layouts,
                             swap_floating_layouts,
                             name,
+                            cwd.clone(),
                         )])
                     } else {
                         let swap_tiled_layouts = Some(layout.swap_tiled_layouts.clone());
@@ -464,10 +466,18 @@ impl Action {
                             swap_tiled_layouts,
                             swap_floating_layouts,
                             name,
+                            cwd.clone(),
                         )])
                     }
                 } else {
-                    Ok(vec![Action::NewTab(None, vec![], None, None, name)])
+                    Ok(vec![Action::NewTab(
+                        None,
+                        vec![],
+                        None,
+                        None,
+                        name,
+                        cwd.clone(),
+                    )])
                 }
             },
             CliAction::PreviousSwapLayout => Ok(vec![Action::PreviousSwapLayout]),

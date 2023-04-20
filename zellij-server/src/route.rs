@@ -456,6 +456,7 @@ pub(crate) fn route_action(
             swap_tiled_layouts,
             swap_floating_layouts,
             tab_name,
+            cwd,
         ) => {
             let shell = session.default_shell.clone();
             let swap_tiled_layouts =
@@ -465,7 +466,7 @@ pub(crate) fn route_action(
             session
                 .senders
                 .send_to_screen(ScreenInstruction::NewTab(
-                    None,
+                    cwd,
                     shell,
                     tab_layout,
                     floating_panes_layout,
