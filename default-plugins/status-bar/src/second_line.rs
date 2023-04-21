@@ -179,7 +179,7 @@ fn get_keys_and_hints(mi: &ModeInfo) -> Vec<(String, String, Vec<Key>)> {
 
         vec![
         (s("Move focus"), s("Move"), focus_keys),
-        (s("New"), s("New"), action_key(&km, &[A::NewTab(None, vec![], None, None, None,None), TO_NORMAL])),
+        (s("New"), s("New"), action_key(&km, &[A::NewTab(None, vec![], None, None, None, None), TO_NORMAL])),
         (s("Close"), s("Close"), action_key(&km, &[A::CloseTab, TO_NORMAL])),
         (s("Rename"), s("Rename"),
             action_key(&km, &[A::SwitchToMode(IM::RenameTab), A::TabNameInput(vec![0])])),
