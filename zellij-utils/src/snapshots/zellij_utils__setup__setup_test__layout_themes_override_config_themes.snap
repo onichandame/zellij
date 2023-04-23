@@ -1021,6 +1021,7 @@ Config {
                     None,
                     None,
                     None,
+                    None,
                 ),
                 SwitchToMode(
                     Normal,
@@ -3231,6 +3232,7 @@ Config {
                 NewTab(
                     None,
                     [],
+                    None,
                     None,
                     None,
                     None,
