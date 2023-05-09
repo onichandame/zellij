@@ -4,6 +4,28 @@ assertion_line: 2632
 expression: "format!(\"{:#?}\", * received_plugin_instructions.lock().unwrap())"
 ---
 [
+    Update(
+        [
+            (
+                None,
+                Some(
+                    10,
+                ),
+                InputReceived,
+            ),
+        ],
+    ),
+    Update(
+        [
+            (
+                None,
+                Some(
+                    10,
+                ),
+                InputReceived,
+            ),
+        ],
+    ),
     NewTab(
         None,
         None,
@@ -52,28 +74,6 @@ expression: "format!(\"{:#?}\", * received_plugin_instructions.lock().unwrap())"
         [],
         0,
         1,
-    ),
-    Update(
-        [
-            (
-                None,
-                Some(
-                    10,
-                ),
-                InputReceived,
-            ),
-        ],
-    ),
-    Update(
-        [
-            (
-                None,
-                Some(
-                    10,
-                ),
-                InputReceived,
-            ),
-        ],
     ),
     Update(
         [
